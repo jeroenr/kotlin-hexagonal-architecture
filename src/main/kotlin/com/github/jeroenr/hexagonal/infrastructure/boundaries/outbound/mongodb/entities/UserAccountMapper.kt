@@ -1,14 +1,12 @@
 package com.github.jeroenr.hexagonal.infrastructure.boundaries.outbound.mongodb.entities
 
 import com.github.jeroenr.hexagonal.domain.model.UserAccountDto
+import com.github.jeroenr.hexagonal.infrastructure.configuration.MapperConfiguration
 import org.mapstruct.BeanMapping
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping
-import org.mapstruct.ReportingPolicy
 
-@Mapper(componentModel = "spring",
-    unmappedSourcePolicy = ReportingPolicy.ERROR,
-    unmappedTargetPolicy = ReportingPolicy.ERROR)
+@Mapper(config = MapperConfiguration::class)
 interface UserAccountMapper {
     @Mapping(source = "balance", target = "balance.amount")
     @Mapping(source = "currency", target = "balance.currency")
