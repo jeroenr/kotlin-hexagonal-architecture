@@ -1,17 +1,12 @@
 package com.github.jeroenr.hexagonal.infrastructure.boundaries.outbound.mongodb
 
-import com.github.jeroenr.hexagonal.domain.model.Currency
-import com.github.jeroenr.hexagonal.domain.ports.UserAccountRepositoryPort
 import com.github.jeroenr.hexagonal.domain.model.UserAccountDto
-import com.github.jeroenr.hexagonal.infrastructure.boundaries.outbound.mongodb.entities.ExchangeRateEntity
-import com.github.jeroenr.hexagonal.infrastructure.boundaries.outbound.mongodb.entities.ExchangeRateMapper
+import com.github.jeroenr.hexagonal.domain.ports.UserAccountRepositoryPort
 import com.github.jeroenr.hexagonal.infrastructure.boundaries.outbound.mongodb.entities.UserAccountEntity
 import com.github.jeroenr.hexagonal.infrastructure.boundaries.outbound.mongodb.entities.UserAccountMapper
-//import com.github.jeroenr.hexagonal.infrastructure.boundaries.outbound.mongodb.entities.UserAccountMapper
 import org.springframework.data.repository.kotlin.CoroutineCrudRepository
 import org.springframework.stereotype.Component
 import org.springframework.stereotype.Repository
-import java.math.BigDecimal
 
 /**
  * Adapter to convert our entity to our DTO and back,
@@ -22,7 +17,7 @@ class UserAccountRepositorySpringDataAdapter(
     private val userAccountMapper: UserAccountMapper) :
         UserAccountRepositoryPort {
     override suspend fun findById(id: String): UserAccountDto? =
-        userAccountRepository.findById(id)?.toUserAccountDto()
+        userAccountRepository.findById(id)?.let { userAccountMapper.toUserAccountDto(it) }
 
     override suspend fun save(userAccount: UserAccountDto): UserAccountDto =
         userAccountMapper.toUserAccountEntity(userAccount).let {

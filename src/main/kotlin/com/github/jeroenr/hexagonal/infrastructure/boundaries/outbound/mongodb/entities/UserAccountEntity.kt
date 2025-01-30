@@ -20,17 +20,4 @@ data class UserAccountEntity(
     var currency: String,
     var createdAt: Instant = Instant.now(),
     var updatedAt: Instant = Instant.now()
-) {
-    fun toUserAccountDto() =
-        UserAccountDto(id, name, Money(balance, Currency.valueOf(currency)))
-
-    companion object {
-        fun of(userAccount: UserAccountDto) =
-            UserAccountEntity(
-                userAccount.id,
-                userAccount.name,
-                userAccount.balance.amount,
-                userAccount.balance.currency.name
-            )
-    }
-}
+)
