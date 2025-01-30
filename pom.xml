@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.2</version>
+		<version>3.4.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.github.jeroenr</groupId>
@@ -14,12 +14,11 @@
 	<name>hexagonal-architecture-example</name>
 	<description>hexagonal-architecture-example</description>
 	<properties>
-		<kotlin.version>1.7.22</kotlin.version>
-		<kotlinx-coroutines.version>1.6.4</kotlinx-coroutines.version>
-		<jackson.version>2.14.2</jackson.version>
-		<mockk.version>1.13.4</mockk.version>
-		<assertj.version>3.24.2</assertj.version>
-		<springdoc-openapi.version>1.6.14</springdoc-openapi.version>
+		<kotlin.version>2.1.10</kotlin.version>
+		<jackson.version>2.18.2</jackson.version>
+		<mockk.version>1.13.16</mockk.version>
+		<assertj.version>3.27.3</assertj.version>
+		<springdoc-openapi.version>1.8.0</springdoc-openapi.version>
 	</properties>
 	<repositories>
 		<repository>
