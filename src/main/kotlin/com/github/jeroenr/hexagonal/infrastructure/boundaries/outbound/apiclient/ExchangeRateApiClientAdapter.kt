@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.awaitBody
+import java.util.*
 
 /**
  * Sample third party API client. Internally uses third party API model, but implements our adapter and uses DTO for
@@ -20,7 +21,7 @@ class ExchangeRateApiClientAdapter(
 ) : ExchangeRateApiClientPort {
     override suspend fun getRate(source: Currency, target: Currency): ExchangeRateDto =
         getRate(source to target).let { (_, currency, factor) ->
-            ExchangeRateDto(factor.toDouble().toBigDecimal(), Currency.valueOf(currency.toUpperCase()))
+            ExchangeRateDto(factor.toDouble().toBigDecimal(), Currency.valueOf(currency.uppercase(Locale.getDefault())))
         }
 
     private suspend fun getRate(currencyPair: Pair<Currency, Currency>): ExchangeRateApiResponse =
